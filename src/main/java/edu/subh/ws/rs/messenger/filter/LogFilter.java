@@ -8,20 +8,26 @@ import javax.ws.rs.container.ContainerResponseContext;
 import javax.ws.rs.container.ContainerResponseFilter;
 import javax.ws.rs.ext.Provider;
 
+import org.apache.log4j.Logger;
+
 @Provider
 public class LogFilter implements ContainerRequestFilter, ContainerResponseFilter {
 
+	static final Logger logger = Logger.getLogger(LogFilter.class);
+	
 	@Override
 	public void filter(ContainerRequestContext requestContext) throws IOException {
 
-		System.out.println(" Request Log "+requestContext.getHeaders());
+		logger.info(" Request Info Log "+requestContext.getHeaders());
+		logger.fatal(" Request fatel Log "+requestContext.getHeaders());
 	}
 
 	@Override
 	public void filter(ContainerRequestContext requestContext, ContainerResponseContext responseContext)
 			throws IOException {
 
-		System.out.println(" Response Log "+requestContext.getHeaders());
+		logger.info(" Response Log "+requestContext.getHeaders());
+		logger.warn(" Request warn Log "+requestContext.getHeaders());
 		
 		responseContext.getHeaders().add("X-Powered-By", "SubhPoo");
 	}
