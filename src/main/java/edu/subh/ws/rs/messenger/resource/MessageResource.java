@@ -13,14 +13,11 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
-import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
-import javax.ws.rs.core.Response.Status;
 
-import edu.subh.ws.rs.messenger.model.ErrorMessage;
 import edu.subh.ws.rs.messenger.model.Message;
 import edu.subh.ws.rs.messenger.resource.bean.MessageFilterBean;
 import edu.subh.ws.rs.messenger.service.MessageService;
@@ -38,8 +35,12 @@ public class MessageResource {
 	private MessageService ms = new MessageServiceImpl();
 	
 	/*@GET
-	@Produces(MediaType.APPLICATION_JSON)
+//	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_XML)
 	public List<Message> getMessages(){			//one way
+		
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		
 		return ms.getAllMessages();
 	}*/
 	
@@ -57,12 +58,16 @@ public class MessageResource {
 	}*/
 	
 	@GET
-	@Produces(MediaType.APPLICATION_JSON)		//default produce annotation value is xml
+//	@Produces(MediaType.APPLICATION_JSON)		//default produce annotation value is xml
+//	@Produces(MediaType.APPLICATION_XML)		//default produce annotation value is xml
+	@Produces (value ={MediaType.APPLICATION_JSON, MediaType.TEXT_XML})	//content negotiation or multiple content type
 	public List<Message> getMessages(@BeanParam MessageFilterBean msgFilterBean){
 		if(msgFilterBean.getYear() > 0)
 			return ms.getAllMessageForYear(msgFilterBean.getYear());
 		if(msgFilterBean.getStart() >= 0 &&  msgFilterBean.getSize() > 0)
 			return ms.getAllMessagePaginated(msgFilterBean.getStart(), msgFilterBean.getSize());
+		
+		System.out.println("hellkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
 		
 		return ms.getAllMessages();
 	}

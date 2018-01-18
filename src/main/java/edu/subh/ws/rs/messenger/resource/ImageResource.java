@@ -11,7 +11,7 @@ import javax.ws.rs.core.Response.ResponseBuilder;
 @Path("image")
 public class ImageResource {
 
-	private static final String FILE_PATH = "C:\\Subh\\doc\\estudio\\JAXRSFiltersReqResp.JPG";
+	private static final String FILE_PATH = "C:\\Subh\\LND\\estudio\\HowHashSetWorks.png";
 
 	@GET
 	@Produces("image/jpg")
