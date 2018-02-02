@@ -12,7 +12,7 @@
             <param-name>jersey.config.server.provider.packages</param-name>
             <param-value>edu.subh.ws.rs</param-value>
         </init-param>
-        <load-on-startup>1</load-on-startup>
+        <!-- <load-on-startup>1</load-on-startup> -->
     </servlet>
   <servlet>
   	<servlet-name>Test</servlet-name>

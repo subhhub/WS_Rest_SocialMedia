@@ -21,6 +21,9 @@ public class MessageServiceImpl implements MessageService {
 	public MessageServiceImpl() {
 		message.put(1l, new Message(1, "hello service 10", "subh"));
 		message.put(2l, new Message(2, "hello service 12", "subhKewat"));
+		message.put(3l, new Message(3, "hello service 13", "job"));
+		message.put(4l, new Message(4, "hello service 14", "poo"));
+		message.put(5l, new Message(5, "hello service 15", "pri"));
 	}
 
 	public List<Message> getAllMessages(){

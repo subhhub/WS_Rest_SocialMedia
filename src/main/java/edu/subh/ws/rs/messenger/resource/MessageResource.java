@@ -58,9 +58,12 @@ public class MessageResource {
 	}*/
 	
 	@GET
+	/*Duplicate annotation @Produces. Repeated annotations are allowed only at source level 1.8 or above*/
 //	@Produces(MediaType.APPLICATION_JSON)		//default produce annotation value is xml
 //	@Produces(MediaType.APPLICATION_XML)		//default produce annotation value is xml
-	@Produces (value ={MediaType.APPLICATION_JSON, MediaType.TEXT_XML})	//content negotiation or multiple content type
+	
+	//if there is no Produce annotable then by efault XML
+//	@Produces (value ={MediaType.APPLICATION_JSON, MediaType.TEXT_XML})	//content negotiation or multiple content type
 	public List<Message> getMessages(@BeanParam MessageFilterBean msgFilterBean){
 		if(msgFilterBean.getYear() > 0)
 			return ms.getAllMessageForYear(msgFilterBean.getYear());
@@ -117,9 +120,9 @@ public class MessageResource {
 		String uriProfile = getUriForProfile(uriInfo, message);
 		String uriComment = getUriForComments(uriInfo, message);
 		
-		message.addLinks(uri, "self");
-		message.addLinks(uriProfile, "profile");
-		message.addLinks(uriComment, "comment");
+//		message.addLinks(uri, "self");
+//		message.addLinks(uriProfile, "profile");
+//		message.addLinks(uriComment, "comment");
 		
 		return message; 
 	}
